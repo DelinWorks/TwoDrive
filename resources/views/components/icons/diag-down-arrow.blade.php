@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="injected-svg" data-src="https://cdn.hugeicons.com/icons/arrow-down-left-01-solid-sharp.svg?v=2.0" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" color="#000000">
+<path d="M8.41395 17.0002H12.9998V19.0002H4.99985V11.0002H6.99985V15.5859L17.5857 5L19 6.41421L8.41395 17.0002Z" fill="#000000"></path>
+</svg>
