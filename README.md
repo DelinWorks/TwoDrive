@@ -1,6 +1,3 @@
----
-
-````markdown
 # 📂 TwoDrive – Laravel-Based Personal Cloud Storage
 
 TwoDrive is a self-hosted OneDrive-like file manager built with Laravel. It includes a virtual filesystem with folder hierarchy, file uploads, previews, folder sharing, etc. Designed to be simple, fast, and clean — ideal for personal use or internal deployment.
@@ -10,11 +7,9 @@ TwoDrive is a self-hosted OneDrive-like file manager built with Laravel. It incl
 ## 🚀 Features
 
 - 🗂 **Hierarchical Virtual File System** – Files and folders managed in a tree structure, not dumped flat.
-- 📁 **Upload / Download / Preview** – Drag & drop file uploads, preview support (PDF, images, etc.).
+- 📁 **Upload / Download / Preview**
 - 📁 **Share** - Share a folder and it's contents using a link.
-- ⏫ **Progress Indicators** – Upload UI shows file progress.
 - 🧾 **File Metadata** – Size, type, last updated info shown inline.
-- 🔗 **Cloudflare Tunnel Friendly** – Works behind secure tunnels with zero public IP exposure.
 - 🧠 **Built with Laravel** – Clean structure, Eloquent-based models, SQLite-powered.
 
 ---
@@ -142,45 +137,6 @@ server {
     }
 }
 ```
-
----
-
-## 🔐 Cloudflare Tunnel Setup
-
-1. Install `cloudflared`
-2. Login:
-
-   ```bash
-   cloudflared tunnel login
-   ```
-3. Create tunnel:
-
-   ```bash
-   cloudflared tunnel create twodrive
-   ```
-4. Route DNS:
-
-   ```bash
-   cloudflared tunnel route dns twodrive yourdomain.com
-   ```
-5. Create config at `/etc/cloudflared/config.yml`:
-
-```yaml
-tunnel: twodrive
-credentials-file: /root/.cloudflared/twodrive.json
-
-ingress:
-  - hostname: yourdomain.com
-    service: http://localhost:80
-  - service: http_status:404
-```
-
-6. Run tunnel:
-
-   ```bash
-   cloudflared tunnel run twodrive
-   ```
-
 ---
 
 ## 📁 File Structure (Brief Overview)
