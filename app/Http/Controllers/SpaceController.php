@@ -339,11 +339,34 @@ class SpaceController extends Controller
             }
 
             $mime = Storage::disk('local')->mimeType($storedPath);
-            $content = Storage::disk('local')->get($storedPath);
-
-            return response($content)
-                ->header('Content-Type', $mime)
-                ->header('Content-Disposition', 'inline; filename="' . $file->filename . '"');
+            $fileSize = Storage::disk('local')->size($storedPath);
+            
+            return response()->stream(function () use ($storedPath) {
+                $stream = Storage::disk('local')->readStream($storedPath);
+                
+                if ($stream === false) {
+                    throw new Exception('Unable to open file stream');
+                }
+                
+                while (!feof($stream)) {
+                    echo fread($stream, 8192); // Read in 8KB chunks
+                    flush(); // Flush output to browser
+                    
+                    // Optional: Check if client disconnected
+                    if (connection_aborted()) {
+                        break;
+                    }
+                }
+                
+                fclose($stream);
+            }, 200, [
+                'Content-Type' => $mime,
+                'Content-Length' => $fileSize,
+                'Content-Disposition' => 'inline; filename="' . $file->filename . '"',
+                'Cache-Control' => 'public, max-age=3600',
+                'Accept-Ranges' => 'bytes'
+            ]);
+            
         } catch (\Exception $e) {
             abort(404, $e->getMessage());
         }
