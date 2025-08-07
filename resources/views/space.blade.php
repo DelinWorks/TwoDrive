@@ -5,8 +5,7 @@
                 class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-20" style="display: none">
                 <div class="bg-white p-4 border rounded-lg shadow-lg" @click.away="showUploadModal = false">
                     <p>Upload File(s):</p>
-                    <form method="POST" action="{{ route('file.store') }}" id="uploadForm"
-                        enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('file.store') }}" id="uploadForm" enctype="multipart/form-data">
                         @csrf
                         <input name="uuid" type="text" hidden :value="fileId">
                         <input type="file" name="files[]" id='fileInput' class="p-2" id="files" multiple>
@@ -80,37 +79,37 @@
                                 <x-icons.sort />
                             </button>
 
-                            <div 
-                                x-show="show" style="display: none"
-                                class="fixed inset-0"
-                                @click="show = false"
-                            >
+                            <div x-show="show" style="display: none" class="fixed inset-0" @click="show = false">
                             </div>
-                            <div 
-                                x-show="show" style="display: none"
-                                class="absolute translate-x-14 translate-y-28 bg-white text-lg rounded px-3 shadow-xl border-2 border-gray-500"
-                            >
+                            <div x-show="show" style="display: none"
+                                class="absolute translate-x-14 translate-y-28 bg-white text-lg rounded px-3 shadow-xl border-2 border-gray-500">
                                 <div class="flex flex-col items-start gap-y-2 py-2 w-32">
                                     <p class="text-gray-500 text-sm break-all">sort elements</p>
                                     <div class="flex gap-x-2">
                                         <p class="min-w-12">Name</p>
-                                        <button @click="window.dispatchEvent(new CustomEvent('sort-files', { detail: { field: 'filename', dir: 'asc' } })); show = false" 
+                                        <button
+                                            @click="window.dispatchEvent(new CustomEvent('sort-files', { detail: { field: 'filename', dir: 'asc' } })); show = false"
                                             class="bg-gray-100 rounded-lg border border-slate-400 hover:bg-gray-200 px-1 h-8"><x-icons.diag-down-arrow /></button>
-                                        <button @click="window.dispatchEvent(new CustomEvent('sort-files', { detail: { field: 'filename', dir: 'desc' } })); show = false" 
+                                        <button
+                                            @click="window.dispatchEvent(new CustomEvent('sort-files', { detail: { field: 'filename', dir: 'desc' } })); show = false"
                                             class="bg-gray-100 rounded-lg border border-slate-400 hover:bg-gray-200 px-1 h-8 transform rotate-180"><x-icons.diag-down-arrow /></button>
                                     </div>
                                     <div class="flex gap-x-2">
                                         <p class="min-w-12">Date</p>
-                                        <button @click="window.dispatchEvent(new CustomEvent('sort-files', { detail: { field: 'created_at', dir: 'asc' } })); show = false" 
+                                        <button
+                                            @click="window.dispatchEvent(new CustomEvent('sort-files', { detail: { field: 'created_at', dir: 'asc' } })); show = false"
                                             class="bg-gray-100 rounded-lg border border-slate-400 hover:bg-gray-200 px-1 h-8"><x-icons.diag-down-arrow /></button>
-                                        <button @click="window.dispatchEvent(new CustomEvent('sort-files', { detail: { field: 'created_at', dir: 'desc' } })); show = false" 
+                                        <button
+                                            @click="window.dispatchEvent(new CustomEvent('sort-files', { detail: { field: 'created_at', dir: 'desc' } })); show = false"
                                             class="bg-gray-100 rounded-lg border border-slate-400 hover:bg-gray-200 px-1 h-8 transform rotate-180"><x-icons.diag-down-arrow /></button>
                                     </div>
                                     <div class="flex gap-x-2">
                                         <p class="min-w-12">Size</p>
-                                        <button @click="window.dispatchEvent(new CustomEvent('sort-files', { detail: { field: 'file_size', dir: 'asc' } })); show = false" 
+                                        <button
+                                            @click="window.dispatchEvent(new CustomEvent('sort-files', { detail: { field: 'file_size', dir: 'asc' } })); show = false"
                                             class="bg-gray-100 rounded-lg border border-slate-400 hover:bg-gray-200 px-1 h-8"><x-icons.diag-down-arrow /></button>
-                                        <button @click="window.dispatchEvent(new CustomEvent('sort-files', { detail: { field: 'file_size', dir: 'desc' } })); show = false" 
+                                        <button
+                                            @click="window.dispatchEvent(new CustomEvent('sort-files', { detail: { field: 'file_size', dir: 'desc' } })); show = false"
                                             class="bg-gray-100 rounded-lg border border-slate-400 hover:bg-gray-200 px-1 h-8 transform rotate-180"><x-icons.diag-down-arrow /></button>
                                     </div>
                                 </div>
@@ -162,7 +161,8 @@
                                     <x-icons.cancel-o />
                                 </button>
 
-                                <div x-data="{ all: false }" x-init="$watch('deleteMode', value => { if (!value) all = false, window.all = false })" class="p-3" @click="all = !all, toggleAll()">
+                                <div x-data="{ all: false }" x-init="$watch('deleteMode', value => { if (!value) all = false, window.all = false })" class="p-3"
+                                    @click="all = !all, toggleAll()">
                                     <input type="checkbox" class="sr-only peer" x-model="all"
                                         :checked="all" />
                                     <div
@@ -202,9 +202,10 @@
                         @endforeach
                         @auth
                             <a class="rounded-md hover:bg-slate-200 px-1" href="/">root</a>
-                        @endauth               
+                        @endauth
                         @guest
-                            <a class="rounded-md hover:bg-slate-200 px-1" @click="alert('The folder you\'re viewing is shared, you have access to everything inside it (view only mode) and anything above it is hidden from you.')">shared</a>
+                            <a class="rounded-md hover:bg-slate-200 px-1"
+                                @click="alert('The folder you\'re viewing is shared, you have access to everything inside it (view only mode) and anything above it is hidden from you.')">shared</a>
                         @endguest
                     </div>
                 </div>
@@ -212,49 +213,41 @@
             </div>
 
             <div class="min-h-96 py-2 {{ count($files) === 0 ? 'flex items-center justify-center' : '' }}"
-                x-data='{"files": @json($files)}'
-                x-init="
-                    window.addEventListener('sort-files', e => {
-                        let { field, dir } = e.detail;
-                        files.sort((a, b) => {
-                            let valA = a[field];
-                            let valB = b[field];
-
-                            // Handle nulls and undefined
-                            if (valA == null) return 1;
-                            if (valB == null) return -1;
-
-                            // Normalize string casing for name
-                            if (typeof valA === 'string') valA = valA.toLowerCase();
-                            if (typeof valB === 'string') valB = valB.toLowerCase();
-
-                            // Date parsing if sorting by created_at
-                            if (field === 'created_at') {
-                                valA = new Date(valA);
-                                valB = new Date(valB);
-                            }
-
-                            let result = 0;
-                            if (valA < valB) result = -1;
-                            else if (valA > valB) result = 1;
-
-                            return dir === 'desc' ? -result : result;
-                        });
+                x-data='{"files": @json($files)}' x-init="window.addEventListener('sort-files', e => {
+                    let { field, dir } = e.detail;
+                    files.sort((a, b) => {
+                        let valA = a[field];
+                        let valB = b[field];
+                
+                        // Handle nulls and undefined
+                        if (valA == null) return 1;
+                        if (valB == null) return -1;
+                
+                        // Normalize string casing for name
+                        if (typeof valA === 'string') valA = valA.toLowerCase();
+                        if (typeof valB === 'string') valB = valB.toLowerCase();
+                
+                        // Date parsing if sorting by created_at
+                        if (field === 'created_at') {
+                            valA = new Date(valA);
+                            valB = new Date(valB);
+                        }
+                
+                        let result = 0;
+                        if (valA < valB) result = -1;
+                        else if (valA > valB) result = 1;
+                
+                        return dir === 'desc' ? -result : result;
                     });
-                ">
+                });">
                 <p class="text-gray-500" x-show="files.length === 0">Nothing's here...</p>
                 <div class="flex flex-col gap-2" x-show="files.length > 0">
                     <template x-for="file in files" :key="file['uuid']">
-                        <div 
-                            x-data="{ checked: false, show: false }"
-                            x-on:checkbox-external-update.window="checked = $event.detail"
-                            
+                        <div x-data="{ checked: false, show: false }" x-on:checkbox-external-update.window="checked = $event.detail"
                             x-init="$watch('deleteMode', value => { if (!value) checked = false })"
-                            class="flex items-center gap-2 rounded-md p-2 hover:bg-gray-200 cursor-pointer"
-                        >
+                            class="flex items-center gap-2 rounded-md p-2 hover:bg-gray-200 cursor-pointer">
                             <div class="flex items-center gap-2 w-full"
-                                @click="if (deleteMode) checked = !checked; else window.location.href = (file['is_folder'] ? '/' : '/v/') + file['uuid']"
-                            >
+                                @click="if (deleteMode) checked = !checked; else window.location.href = (file['is_folder'] ? '/' : '/v/') + file['uuid']">
                                 <div x-show='deleteMode' x-transition:enter="transition ease-out duration-1000"
                                     x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
                                     x-transition:leave="transition ease-in duration-0"
@@ -274,16 +267,21 @@
                                 <div class="bg-white" x-show="!file['is_folder']">
                                     <img loading="lazy"
                                         :src="'file-type-icons/s-' + getFileExtension(file['filename']) + '.svg'"
-                                        class="w-6 h-6 scale-[2] bg-transparent fill-none" style="clip-path: inset(15%)"
+                                        class="w-6 h-6 scale-[2] bg-transparent fill-none"
+                                        style="clip-path: inset(15%)"
                                         onerror="this.onerror=null;this.src='file-type-icons/s-default.svg'" />
                                 </div>
                                 <div class="flex flex-col w-full gap-1 pl-2">
                                     <div class="flex items-center gap-2">
-                                        <p class="font-medium break-words break-all leading-none" x-text="file['filename']"></p>
-                                        <p x-show="file['is_shared']" class="font-semibold text-sm text-red-500 break-words break-all leading-none">— SHARED</p>
+                                        <p class="font-medium break-words break-all leading-none"
+                                            x-text="file['filename']"></p>
+                                        <p x-show="file['is_shared']"
+                                            class="font-semibold text-sm text-red-500 break-words break-all leading-none">
+                                            — SHARED</p>
                                     </div>
                                     <div class="flex flex-row-reverse justify-between">
-                                        <div class="text-gray-400 text-sm w-20 text-right" x-text="fileSize(file['file_size'])">
+                                        <div class="text-gray-400 text-sm w-20 text-right"
+                                            x-text="fileSize(file['file_size'])">
                                         </div>
                                         <p class="text-gray-400 text-sm"
                                             x-text="new Date(file['created_at']).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })">
@@ -291,43 +289,45 @@
                                     </div>
                                 </div>
                             </div>
-                            <div x-show="!deleteMode"
-                                x-intersect:leave="show = false"
+                            <div x-show="!deleteMode" x-intersect:leave="show = false"
                                 x-transition:enter="transition ease-out duration-1000"
                                 x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
                                 x-transition:leave="transition ease-in duration-0"
-                                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                            >
-                                <div 
-                                    x-show="show" 
-                                    class="fixed inset-0"
-                                    @click="show = false"
-                                >
+                                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+                                <div x-show="show" class="fixed inset-0" @click="show = false">
                                 </div>
-                                <div 
-                                    x-show="show"
-                                    class="absolute -translate-x-full bg-white text-lg rounded px-3 py-1 shadow-xl border-2 border-gray-500"
-                                >
+                                <div x-show="show"
+                                    class="absolute -translate-x-full bg-white text-lg rounded px-3 py-1 shadow-xl border-2 border-gray-500">
                                     <div class="flex flex-col items-start gap-y-2 py-2 w-32">
 
                                         {{-- Folder Tab --}}
                                         <p class="text-gray-500 text-sm break-all" x-text="file['filename']"></p>
 
-                                        <form x-show="file['is_folder']" method="POST" action="{{ route('folder.share') }}">
+                                        <form x-show="file['is_folder']" method="POST"
+                                            action="{{ route('folder.share') }}">
                                             @csrf
                                             <input name="uuid" type="text" hidden :value="file['uuid']">
-                                            <button class="bg-red-100 rounded-lg border border-slate-400 hover:bg-red-200 px-1 min-w-32 pl-1">
+                                            <button
+                                                class="bg-red-100 rounded-lg border border-slate-400 hover:bg-red-200 px-1 min-w-32 pl-1">
                                                 <p x-show="!file['is_shared']">Share Folder</p>
                                                 <p x-show="file['is_shared']" class="text-left pl-2">Unshare</p>
                                             </button>
                                         </form>
 
-                                        <a :href="'/' + file['uuid']" x-show="file['is_folder']" class="bg-gray-100 rounded-lg border border-slate-400 hover:bg-gray-200 px-1 min-w-32 pl-3">View Folder</a>
-                                        <a @click="navigator.clipboard.writeText(window.location.href.split('?')[0].replace(/\/[^\/]*$/, '') + '/' + file['uuid']); show = false;" x-show="file['is_folder'] && file['is_shared']" class="bg-gray-100 rounded-lg border border-slate-400 hover:bg-gray-200 px-1 min-w-32 pl-3">Copy Link</a>
+                                        <a :href="'/' + file['uuid']" x-show="file['is_folder']"
+                                            class="bg-gray-100 rounded-lg border border-slate-400 hover:bg-gray-200 px-1 min-w-32 pl-3">View
+                                            Folder</a>
+                                        <a @click="navigator.clipboard.writeText(window.location.href.split('?')[0].replace(/\/[^\/]*$/, '') + '/' + file['uuid']); show = false;"
+                                            x-show="file['is_folder'] && file['is_shared']"
+                                            class="bg-gray-100 rounded-lg border border-slate-400 hover:bg-gray-200 px-1 min-w-32 pl-3">Copy
+                                            Link</a>
 
                                         {{-- File Tab --}}
-                                        <a :href="/v/ + file['uuid']" x-show="!file['is_folder']" class="bg-gray-100 rounded-lg border border-slate-400 hover:bg-gray-200 px-1 min-w-32 pl-3">View File</a>
-                                        <a :href="/d/ + file['uuid']" x-show="!file['is_folder']" class="bg-gray-100 rounded-lg border border-slate-400 hover:bg-gray-200 px-1 min-w-32 pl-3">Download</a>
+                                        <a :href="/v/ + file['uuid']" x-show="!file['is_folder']"
+                                            class="bg-gray-100 rounded-lg border border-slate-400 hover:bg-gray-200 px-1 min-w-32 pl-3">View
+                                            File</a>
+                                        <a :href="/d/ + file['uuid']" x-show="!file['is_folder']"
+                                            class="bg-gray-100 rounded-lg border border-slate-400 hover:bg-gray-200 px-1 min-w-32 pl-3">Download</a>
                                     </div>
                                 </div>
                                 <div class="w-full" @click="show = true">
